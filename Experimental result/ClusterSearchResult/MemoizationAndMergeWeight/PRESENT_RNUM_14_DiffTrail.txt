@@ -1,0 +1,84 @@
+Margin:30
+Bn:62,  UBofWeight:92,  Margin:30,  ASNUB_ER:4
+Input:
+0x0 7 0 0 0 0 0 0 0 0 0 0 0 7 0 0 
+Output:
+0x0 0 0 0 0 0 0 0 0 0 0 0 5 0 0 5 
+
+Weight: 58, NUM: 1
+Weight: 59, NUM: 1
+Weight: 60, NUM: 0
+Weight: 61, NUM: 0
+Weight: 62, NUM: 1
+Weight: 63, NUM: 0
+Weight: 64, NUM: 0
+Weight: 65, NUM: 0
+Weight: 66, NUM: 1
+Weight: 67, NUM: 1
+Weight: 68, NUM: 1
+Weight: 69, NUM: 0
+Weight: 70, NUM: 1
+Weight: 71, NUM: 1
+Weight: 72, NUM: 0
+Weight: 73, NUM: 0
+Weight: 74, NUM: 0
+Weight: 75, NUM: 0
+Weight: 76, NUM: 1
+Weight: 77, NUM: 1
+Weight: 78, NUM: 1
+Weight: 79, NUM: 0
+Weight: 80, NUM: 1
+Weight: 81, NUM: 0
+Weight: 82, NUM: 0
+Weight: 83, NUM: 1
+Weight: 84, NUM: 1
+Weight: 85, NUM: 1
+Weight: 86, NUM: 0
+Weight: 87, NUM: 0
+Weight: 88, NUM: 0
+Weight: 89, NUM: 1
+Weight: 90, NUM: 1
+Weight: 91, NUM: 0
+Weight: 92, NUM: 1
+Weight: 93, NUM: 1
+Weight: 94, NUM: 0
+Weight: 95, NUM: 0
+Weight: 96, NUM: 0
+Weight: 97, NUM: 1
+Weight: 98, NUM: 1
+Weight: 99, NUM: 0
+Weight: 100, NUM: 0
+Weight: 101, NUM: 1
+Weight: 102, NUM: 1
+Weight: 103, NUM: 1
+Weight: 104, NUM: 0
+Weight: 105, NUM: 1
+Weight: 106, NUM: 1
+Weight: 107, NUM: 0
+Weight: 108, NUM: 0
+Weight: 109, NUM: 1
+Weight: 110, NUM: 1
+Weight: 111, NUM: 1
+Weight: 112, NUM: 0
+Weight: 113, NUM: 0
+Weight: 114, NUM: 1
+Weight: 115, NUM: 0
+Weight: 116, NUM: 1
+Weight: 117, NUM: 0
+Weight: 118, NUM: 0
+Weight: 119, NUM: 1
+Weight: 120, NUM: 0
+Weight: 121, NUM: 1
+Weight: 122, NUM: 0
+Weight: 123, NUM: 1
+Weight: 124, NUM: 1
+Weight: 125, NUM: 0
+Weight: 126, NUM: 0
+Weight: 127, NUM: 1
+Weight: 128, NUM: 1
+Weight: 129, NUM: 0
+Weight: 130, NUM: 1
+Weight: 131, NUM: 0
+Trail_NUM: 38, TrailClusterWeight: 57.349503 
+Total Time: 679.990000 s, 11.333167 min  
+

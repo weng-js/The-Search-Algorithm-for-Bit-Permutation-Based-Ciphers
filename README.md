@@ -1,3 +1,3 @@
 # The-Search-Algorithm-for-Bit-Permutation-Based-Ciphers
 
-The project will be updated by December 13
+The project will be completed by 13 December to update all information

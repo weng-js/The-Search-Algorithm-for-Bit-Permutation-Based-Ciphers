@@ -1,0 +1,31 @@
+Bn:274,  UBofWeight:299,  Margin:25,  RASNUB_ER:3
+Input:
+0x9000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0090 0000 0000 0000 0000 
+Output:
+0x0000 0000 0000 0000 0000 0000 0000 0000 0000 000a 0000 0000 0000 0000 0000 0c00 
+
+Weight: 254, NUM: 1
+Weight: 257, NUM: 1
+Weight: 260, NUM: 1
+Weight: 263, NUM: 1
+Weight: 264, NUM: 1
+Weight: 265, NUM: 1
+Weight: 272, NUM: 1
+Weight: 273, NUM: 1
+Weight: 274, NUM: 1
+Weight: 277, NUM: 1
+Weight: 278, NUM: 1
+Weight: 279, NUM: 1
+Weight: 280, NUM: 1
+Weight: 282, NUM: 1
+Weight: 284, NUM: 1
+Weight: 285, NUM: 1
+Weight: 286, NUM: 1
+Weight: 289, NUM: 1
+Weight: 293, NUM: 1
+Weight: 294, NUM: 1
+Weight: 295, NUM: 1
+Weight: 296, NUM: 1
+Weight: 298, NUM: 1
+Trail_NUM: 23, TrailClusterWeight: 253.805850 
+Total Time: 73.764000 s, 1.229400 min  

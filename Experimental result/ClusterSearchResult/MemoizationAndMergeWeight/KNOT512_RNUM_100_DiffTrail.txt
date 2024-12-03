@@ -1,0 +1,49 @@
+Bn:530,  UBofWeight:555,  Margin:25,  RASNUB_ER:3
+Input:
+0x9000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0090 0000 0000 
+Output:
+0x0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0c00 0000 0000 0000 0000 0000 0000 0000 000a 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 0000 
+
+Weight: 480, NUM: 1
+Weight: 482, NUM: 1
+Weight: 484, NUM: 1
+Weight: 485, NUM: 1
+Weight: 488, NUM: 1
+Weight: 494, NUM: 1
+Weight: 496, NUM: 1
+Weight: 497, NUM: 1
+Weight: 506, NUM: 1
+Weight: 509, NUM: 1
+Weight: 510, NUM: 1
+Weight: 513, NUM: 1
+Weight: 514, NUM: 1
+Weight: 515, NUM: 1
+Weight: 516, NUM: 1
+Weight: 518, NUM: 1
+Weight: 519, NUM: 1
+Weight: 520, NUM: 1
+Weight: 522, NUM: 1
+Weight: 526, NUM: 1
+Weight: 528, NUM: 1
+Weight: 529, NUM: 1
+Weight: 530, NUM: 1
+Weight: 531, NUM: 1
+Weight: 532, NUM: 1
+Weight: 533, NUM: 1
+Weight: 534, NUM: 1
+Weight: 535, NUM: 1
+Weight: 536, NUM: 1
+Weight: 537, NUM: 1
+Weight: 540, NUM: 1
+Weight: 541, NUM: 1
+Weight: 544, NUM: 1
+Weight: 548, NUM: 1
+Weight: 549, NUM: 1
+Weight: 550, NUM: 1
+Weight: 551, NUM: 1
+Weight: 552, NUM: 1
+Weight: 553, NUM: 1
+Weight: 555, NUM: 1
+Trail_NUM: 40, TrailClusterWeight: 479.569458 
+Total Time: 917.042000 s, 15.284033 min  
+

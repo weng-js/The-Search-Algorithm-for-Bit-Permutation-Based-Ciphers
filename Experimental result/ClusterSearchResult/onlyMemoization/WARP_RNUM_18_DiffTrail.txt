@@ -1,0 +1,12 @@
+Bn:122,  UBofWeight:126,  Margin:4
+Input:
+0x 00 00 a0 af 00 5a 00 00 a0 00 aa 75 00 00 00 00 
+Output:
+0x 00 0a 50 00 0a a0 00 00 5a 00 00 0a 00 00 0a 00 
+
+Weight: 122, NUM: 4954208
+Weight: 125, NUM: 7965792
+Weight: 126, NUM: 15252928
+Trail_NUM: 28172928, TrailClusterWeight: 99.281158 
+Total Time: 29029.279000 s, 483.821317 min  
+

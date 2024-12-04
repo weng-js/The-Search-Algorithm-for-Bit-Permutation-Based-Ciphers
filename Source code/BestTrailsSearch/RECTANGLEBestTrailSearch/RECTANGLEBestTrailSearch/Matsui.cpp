@@ -16,48 +16,48 @@ using namespace std;
 
 ALIGNED_TYPE_(__m128i, 16) Trail[RNUM][State_NUM];        //256bit 2*__m128i  384 3*__m128i 512 4*__m128i
 int t_w[RNUM];
-ALIGNED_TYPE_(__m128i, 16) BestTrail[RNUM][State_NUM];    //256bit 2*__m128i  384 3*__m128i 512 4*__m128i //¼ÇÂ¼×îÓÅµÄ½á¹û£¬Õâ¸öÓÃÀ´×îºóÊä³ö
+ALIGNED_TYPE_(__m128i, 16) BestTrail[RNUM][State_NUM];    //256bit 2*__m128i  384 3*__m128i 512 4*__m128i //è®°å½•æœ€ä¼˜çš„ç»“æœï¼Œè¿™ä¸ªç”¨æ¥æœ€åè¾“å‡º
 int Best_w[RNUM];
-ALIGNED_TYPE_(__m128i, 16) TmpBestTrail[RNUM][State_NUM]; //256bit 2*__m128i  384 3*__m128i 512 4*__m128i //ÓÃÀ´ÁÙÊ±¼ÇÂ¼×îÓÅ¼ÇÂ¼×îÓÅµÄ½á¹û£¬Õâ¸öÓÃÀ´×îºóÊä³ö
-int Tmp_Best_w[RNUM]; //ÁÙÊ±±ê¼Ç
+ALIGNED_TYPE_(__m128i, 16) TmpBestTrail[RNUM][State_NUM]; //256bit 2*__m128i  384 3*__m128i 512 4*__m128i //ç”¨æ¥ä¸´æ—¶è®°å½•æœ€ä¼˜è®°å½•æœ€ä¼˜çš„ç»“æœï¼Œè¿™ä¸ªç”¨æ¥æœ€åè¾“å‡º
+int Tmp_Best_w[RNUM]; //ä¸´æ—¶æ ‡è®°
 
-ALIGNED_TYPE_(__m128i, 16) TmpNaBestTrail[RNUM][State_NUM]; //256bit 2*__m128i  384 3*__m128i 512 4*__m128i //ÓÃÀ´ÁÙÊ±¼ÇÂ¼×îÓÅ¼ÇÂ¼×îÓÅµÄ½á¹û£¬Õâ¸öÓÃÀ´×îºóÊä³ö
-int TmpNaBestw[RNUM]; //ÁÙÊ±±ê¼Ç
+ALIGNED_TYPE_(__m128i, 16) TmpNaBestTrail[RNUM][State_NUM]; //256bit 2*__m128i  384 3*__m128i 512 4*__m128i //ç”¨æ¥ä¸´æ—¶è®°å½•æœ€ä¼˜è®°å½•æœ€ä¼˜çš„ç»“æœï¼Œè¿™ä¸ªç”¨æ¥æœ€åè¾“å‡º
+int TmpNaBestw[RNUM]; //ä¸´æ—¶æ ‡è®°
 
-ALIGNED_TYPE_(__m128i, 16) GenBnBestTrail[RNUM][State_NUM]; //256bit 2*__m128i  384 3*__m128i 512 4*__m128i //ÓÃÀ´ÁÙÊ±¼ÇÂ¼×îÓÅ¼ÇÂ¼×îÓÅµÄ½á¹û
-int GenBnBestw[RNUM]; //ÁÙÊ±±ê¼Ç->´æ´¢À©Õ¹µÃµ½µÄ×îÓÅ¼£
+ALIGNED_TYPE_(__m128i, 16) GenBnBestTrail[RNUM][State_NUM]; //256bit 2*__m128i  384 3*__m128i 512 4*__m128i //ç”¨æ¥ä¸´æ—¶è®°å½•æœ€ä¼˜è®°å½•æœ€ä¼˜çš„ç»“æœ
+int GenBnBestw[RNUM]; //ä¸´æ—¶æ ‡è®°->å­˜å‚¨æ‰©å±•å¾—åˆ°çš„æœ€ä¼˜è¿¹
 
-ALIGNED_TYPE_(__m128i, 16) GenBnNa1BestTrail[RNUM][State_NUM]; //256bit 2*__m128i  384 3*__m128i 512 4*__m128i //ÓÃÀ´ÁÙÊ±¼ÇÂ¼×îÓÅ¼ÇÂ¼×îÓÅµÄ½á¹û
-int GenBnNa1Bestw[RNUM]; //ÁÙÊ±±ê¼Ç->´æ´¢À©Õ¹µÃµ½µÄ×îÓÅ¼£
+ALIGNED_TYPE_(__m128i, 16) GenBnNa1BestTrail[RNUM][State_NUM]; //256bit 2*__m128i  384 3*__m128i 512 4*__m128i //ç”¨æ¥ä¸´æ—¶è®°å½•æœ€ä¼˜è®°å½•æœ€ä¼˜çš„ç»“æœ
+int GenBnNa1Bestw[RNUM]; //ä¸´æ—¶æ ‡è®°->å­˜å‚¨æ‰©å±•å¾—åˆ°çš„æœ€ä¼˜è¿¹
 
-ALIGNED_TYPE_(__m128i, 16) GenBnNa2BestTrail[RNUM][State_NUM]; //256bit 2*__m128i  384 3*__m128i 512 4*__m128i //ÓÃÀ´ÁÙÊ±¼ÇÂ¼×îÓÅ¼ÇÂ¼×îÓÅµÄ½á¹û
-int GenBnNa2Bestw[RNUM]; //ÁÙÊ±±ê¼Ç->´æ´¢À©Õ¹µÃµ½µÄ×îÓÅ¼£
+ALIGNED_TYPE_(__m128i, 16) GenBnNa2BestTrail[RNUM][State_NUM]; //256bit 2*__m128i  384 3*__m128i 512 4*__m128i //ç”¨æ¥ä¸´æ—¶è®°å½•æœ€ä¼˜è®°å½•æœ€ä¼˜çš„ç»“æœ
+int GenBnNa2Bestw[RNUM]; //ä¸´æ—¶æ ‡è®°->å­˜å‚¨æ‰©å±•å¾—åˆ°çš„æœ€ä¼˜è¿¹
 
 map<int*, pair<__m128i**, int*>> NaBestTrailMap;
 
-int NaIndex;             //µ±Ç°ÕıÔÚËÑË÷µÄ×Ó¼¯
-int NaBWIndex;           //¶ÔÓ¦µÄÄæÏò±ê¼Ç
+int NaIndex;             //å½“å‰æ­£åœ¨æœç´¢çš„å­é›†
+int NaBWIndex;           //å¯¹åº”çš„é€†å‘æ ‡è®°
 
-int FBWRound;      //ÕıÏò/ÄæÏòÉîÈëµÄÂÖÊı
+int FBWRound;      //æ­£å‘/é€†å‘æ·±å…¥çš„è½®æ•°
 bool FBRoundOverTag;
 
-bool FWSearchOver; //ÕıÏòËÑË÷µ½×îºóÒ»ÂÖ£¬±íÊ¾¿ÉÒÔÄæÏòËÑË÷ÁË
-bool BWSearchOver; //ÄæÏòËÑË÷µ½×îºóÒ»ÂÖ£¬ÓÃÓÚ±ê¼ÇÊÇ·ñËÑË÷µ½µ×
-bool SubFindBn;    //ÓÃÓÚ¸üĞÂ×Ó¼¯ÖØÁ¿ÉÏ½ç
+bool FWSearchOver; //æ­£å‘æœç´¢åˆ°æœ€åä¸€è½®ï¼Œè¡¨ç¤ºå¯ä»¥é€†å‘æœç´¢äº†
+bool BWSearchOver; //é€†å‘æœç´¢åˆ°æœ€åä¸€è½®ï¼Œç”¨äºæ ‡è®°æ˜¯å¦æœç´¢åˆ°åº•
+bool SubFindBn;    //ç”¨äºæ›´æ–°å­é›†é‡é‡ä¸Šç•Œ
 
-bool UpdateFW;  //ÅĞ¶¨ÊÇ·ñĞèÒª¸üĞÂÕıÏò±í
-bool UpdateBW;  //ÅĞ¶¨ÊÇ·ñĞèÒª¸üĞÂÄæÏò±í
+bool UpdateFW;  //åˆ¤å®šæ˜¯å¦éœ€è¦æ›´æ–°æ­£å‘è¡¨
+bool UpdateBW;  //åˆ¤å®šæ˜¯å¦éœ€è¦æ›´æ–°é€†å‘è¡¨
 
 int UpdateFWRoundNa1;
 int UpdateFWRoundNa2;
 int UpdateBWRoundNa1;
 int UpdateBWRoundNa2;
 
-//ÓÃÓÚÀ©Õ¹µÃµ½Ìõ¼ş×îÓÅ
-int BnInNA;	   //×îÓÅBnËùÊôµÄ×Ó¼¯
-int GenBnInNA; //À©Õ¹ÂÖÊıµÄNA
-bool GenBnTag; //Ä¿Ç°ÊÇ·ñÔÚÀ©Õ¹£¿
-bool GenBnDir; //ÕıÏòÀ©Õ¹»¹ÊÇÄæÏòÀ©Õ¹µÃµ½µÄ×îÓÅ
+//ç”¨äºæ‰©å±•å¾—åˆ°æ¡ä»¶æœ€ä¼˜
+int BnInNA;	   //æœ€ä¼˜Bnæ‰€å±çš„å­é›†
+int GenBnInNA; //æ‰©å±•è½®æ•°çš„NA
+bool GenBnTag; //ç›®å‰æ˜¯å¦åœ¨æ‰©å±•ï¼Ÿ
+bool GenBnDir; //æ­£å‘æ‰©å±•è¿˜æ˜¯é€†å‘æ‰©å±•å¾—åˆ°çš„æœ€ä¼˜
 int GenBnNa1NPRnum;
 int GenBnNa2NPRnum;
 
@@ -68,17 +68,17 @@ int Na1PreNxtBn;
 int Na2PreNxtBn;
 
 int Rnum, NPRnum;
-int BNPRnum;               //¼ÇÂ¼×îÓÅµÄÆğÊ¼ËÑË÷µã
+int BNPRnum;               //è®°å½•æœ€ä¼˜çš„èµ·å§‹æœç´¢ç‚¹
 
-int Bn;   //ÕûÌåµÄÖØÁ¿ÉÏ½ç
-int BWBn, FWBn; //ÄæÏòËÑË÷µÄÖØÁ¿ÉÏ½ç£¬±£Ö¤ÌØ¶¨Êä³ö·µ»ØµÄ²¿·Ö¼£ÊÇµ±Ç°Êä³ö×îÓÅµÄ
+int Bn;   //æ•´ä½“çš„é‡é‡ä¸Šç•Œ
+int BWBn, FWBn; //é€†å‘æœç´¢çš„é‡é‡ä¸Šç•Œï¼Œä¿è¯ç‰¹å®šè¾“å‡ºè¿”å›çš„éƒ¨åˆ†è¿¹æ˜¯å½“å‰è¾“å‡ºæœ€ä¼˜çš„
 int ODirWMin;
 
-//ÓÃÓÚËÑË÷¹ı³ÌÖĞ¸üĞÂNA2
+//ç”¨äºæœç´¢è¿‡ç¨‹ä¸­æ›´æ–°NA2
 int NA2_SBX1_VALUE;
 
 int BestB[RNUM + 1] = { 0 };
-bool FindBn;//ÕÒµ½×îÓÅ
+bool FindBn;//æ‰¾åˆ°æœ€ä¼˜
 
 __m128i count_asn = _mm_setzero_si128();
 //__m128i MASK1 = _mm_set1_epi8(0xf);
@@ -92,15 +92,15 @@ void FileOutputTrail() {
 	char tmpFILENAME[50] = { 0 };
 	FILE* tmpfp;
 #if(TYPE==0)
-	strcat_s(tmpFILENAME, "result/RECTANGLE_Diff_Trail.txt");
+	strcat_s(tmpFILENAME, "RECTANGLE_Diff_Trail.txt");
 #elif(TYPE==1)
-	strcat_s(tmpFILENAME, "result/RECTANGLE_Linear_Trail.txt");
+	strcat_s(tmpFILENAME, "RECTANGLE_Linear_Trail.txt");
 #endif
 
-	// ¼ÆËã¶ÔÓ¦µÄÊäÈë/Êä³ö£¬²¢¸ø³ö¶ÔÓ¦×ÔÓÉ¶ËµÄÆäÖĞÒ»¸öÖµ
-	// BNPRnum    ÆğÊ¼ËÑË÷µã 
+	// è®¡ç®—å¯¹åº”çš„è¾“å…¥/è¾“å‡ºï¼Œå¹¶ç»™å‡ºå¯¹åº”è‡ªç”±ç«¯çš„å…¶ä¸­ä¸€ä¸ªå€¼
+	// BNPRnum    èµ·å§‹æœç´¢ç‚¹ 
 	
-	//³õÊ¼»¯
+	//åˆå§‹åŒ–
 	ALIGNED_TYPE_(__m128i, 16) SO[RNUM][State_NUM];        //256bit 2*__m128i  384 3*__m128i 512 4*__m128i
 	ALIGNED_TYPE_(__m128i, 16) PO[RNUM][State_NUM];        //256bit 2*__m128i  384 3*__m128i 512 4*__m128i
 	memset(SO, 0, RNUM * STATE_LEN);
@@ -108,38 +108,38 @@ void FileOutputTrail() {
 	memcpy(SO, BestTrail, (BNPRnum - 1) * STATE_LEN);
 	memcpy(&PO[BNPRnum], &BestTrail[BNPRnum], (Rnum - BNPRnum) * STATE_LEN);
 
-	//¼ÆËã1~BNPRnumµÄÊäÈë²î·Ö
+	//è®¡ç®—1~BNPRnumçš„è¾“å…¥å·®åˆ†
 	for (int r = 0; r < BNPRnum - 1; r++) {
 		for (int i = 0; i < SBox_NUM; i++) {
 			if ((SO[r][0].m128i_u8[i])) {
-				for (int k = 0; k < State_NUM; k++) { //ÕıÏòÏßĞÔ±ä»»
+				for (int k = 0; k < State_NUM; k++) { //æ­£å‘çº¿æ€§å˜æ¢
 					PO[r + 1][k] = _mm_xor_si128(PO[r + 1][k], PTable[i][SO[r][0].m128i_u8[i]][k]);
 				}
 			}
 		}
 	}
-	//¼ÆËãBNPRnum~Rnum-1µÄÊä³ö²î·Ö
+	//è®¡ç®—BNPRnum~Rnum-1çš„è¾“å‡ºå·®åˆ†
 	for (int r = BNPRnum; r < Rnum; r++) {
 		for (int i = 0; i < SBox_NUM; i++) {
 			if ((PO[r][0].m128i_u8[i])) {
-				for (int k = 0; k < State_NUM; k++) { //ÕıÏòÏßĞÔ±ä»»
+				for (int k = 0; k < State_NUM; k++) { //æ­£å‘çº¿æ€§å˜æ¢
 					SO[r - 1][k] = _mm_xor_si128(SO[r - 1][k], INVPTable[i][PO[r][0].m128i_u8[i]][k]);
 				}
 			}
 		}
 	}
-	//¼ÆËã×ÔÓÉ¶Ë
+	//è®¡ç®—è‡ªç”±ç«¯
 	for (int i = 0; i < 0x10; i++) {
-		//µÚÒ»ÂÖµÄÊäÈë²î·Ö
+		//ç¬¬ä¸€è½®çš„è¾“å…¥å·®åˆ†
 		if (SO[0][0].m128i_u8[i]) {
 			PO[0][0].m128i_u8[i] = BWWeightOrderIndex[SO[0][0].m128i_u8[i]][0];
 		}
-		//RnumÂÖµÄÊä³ö²î·Ö
+		//Rnumè½®çš„è¾“å‡ºå·®åˆ†
 		if (PO[Rnum - 1][0].m128i_u8[i]) {
 			SO[Rnum - 1][0].m128i_u8[i] = FWWeightOrderIndex[PO[Rnum - 1][0].m128i_u8[i]][0];
 		}
 	}
-	//Êä³ö×îÓÅ¼£ºÍÖØÁ¿
+	//è¾“å‡ºæœ€ä¼˜è¿¹å’Œé‡é‡
 	tmpfp = fopen(tmpFILENAME, "a+");
 	fprintf(tmpfp, "\nRNUM_%d:  Bn:%d NP:%d\n", Rnum, Bn, BNPRnum);
 
@@ -147,14 +147,14 @@ void FileOutputTrail() {
 		fprintf(tmpfp, "PO[%02d]: 0x", r+1);
 		for (int s = State_NUM - 1; s >= 0; s--) {
 			for (int k = 0xf; k >= 0; k--) {
-				fprintf(tmpfp, "%02x ", PO[r][s].m128i_u8[k]); //Á½Î»£¬²»×ãÓÃÌî³ä£¬ÊäÈë²î·Ö
+				fprintf(tmpfp, "%02x ", PO[r][s].m128i_u8[k]); //ä¸¤ä½ï¼Œä¸è¶³ç”¨å¡«å……ï¼Œè¾“å…¥å·®åˆ†
 			}
 			//fprintf(tmpfp, "  ");
 		}
 		fprintf(tmpfp, "\nSO[%02d]: 0x", r+1);
 		for (int s = State_NUM - 1; s >= 0; s--) {
 			for (int k = 0xf; k >= 0; k--) {
-				fprintf(tmpfp, "%02x ", SO[r][s].m128i_u8[k]); //Á½Î»£¬²»×ãÓÃÌî³ä£¬Êä³ö²î·Ö
+				fprintf(tmpfp, "%02x ", SO[r][s].m128i_u8[k]); //ä¸¤ä½ï¼Œä¸è¶³ç”¨å¡«å……ï¼Œè¾“å‡ºå·®åˆ†
 			}
 			//fprintf(tmpfp, "  ");
 		}
@@ -166,8 +166,8 @@ void FileOutputTrail() {
 }
 
 inline void UpdateFWLBNa1(int i) {
-	if (FBRoundOverTag) { //ËÑµ½µ×
-		Na1FWMinW[FBWRound][i][1] = 1; // ±ê¼Ç¸Ã±äÁ¿ËÑË÷µ½µ×
+	if (FBRoundOverTag) { //æœåˆ°åº•
+		Na1FWMinW[FBWRound][i][1] = 1; // æ ‡è®°è¯¥å˜é‡æœç´¢åˆ°åº•
 		__m128i** NaBestTrail = new __m128i * [FBWRound];
 		*NaBestTrail = new __m128i[FBWRound * State_NUM];
 		for (int row = 0; row < FBWRound; row++) NaBestTrail[row] = *NaBestTrail + row * State_NUM;
@@ -179,7 +179,7 @@ inline void UpdateFWLBNa1(int i) {
 
 	if (FindBn) Na1FWMinW[FBWRound][i][0] = FWBn;
 	else Na1FWMinW[FBWRound][i][0] = FWBn + 1;
-	for (int r = FBWRound + 1; r <= Rnum - 1; r++) { //¶ÔÓ¦¹À¼ÆÖµ¶¼ĞèÒª¸Ä±ä
+	for (int r = FBWRound + 1; r <= Rnum - 1; r++) { //å¯¹åº”ä¼°è®¡å€¼éƒ½éœ€è¦æ”¹å˜
 		for (int k = FBWRound; k < r; k++) {
 			Na1FWMinW[r][i][0] = (Na1FWMinW[r][i][0] > (Na1FWMinW[k][i][0] + NaLB[r - k][0]) ? Na1FWMinW[r][i][0] : (Na1FWMinW[k][i][0] + NaLB[r - k][0]));
 	}
@@ -188,8 +188,8 @@ inline void UpdateFWLBNa1(int i) {
 }
 
 inline void UpdateFWLBNa2(int i, int sbox) {
-	if (FBRoundOverTag) { //ËÑµ½µ×
-		Na2FWMinW[FBWRound][i][sbox][1] = 1; // ±ê¼Ç¸Ã±äÁ¿ËÑË÷µ½µ×
+	if (FBRoundOverTag) { //æœåˆ°åº•
+		Na2FWMinW[FBWRound][i][sbox][1] = 1; // æ ‡è®°è¯¥å˜é‡æœç´¢åˆ°åº•
 		__m128i** NaBestTrail = new __m128i * [FBWRound];
 		*NaBestTrail = new __m128i[FBWRound * State_NUM];
 		for (int row = 0; row < FBWRound; row++) NaBestTrail[row] = *NaBestTrail + row * State_NUM;
@@ -202,7 +202,7 @@ inline void UpdateFWLBNa2(int i, int sbox) {
 	if (FindBn) Na2FWMinW[FBWRound][i][sbox][0] = FWBn;
 	else Na2FWMinW[FBWRound][i][sbox][0] = FWBn + 1;
 
-	for (int r = FBWRound + 1; r <= Rnum - 1; r++) { //¶ÔÓ¦¹À¼ÆÖµ¶¼ĞèÒª½øĞĞ¸üĞÂ
+	for (int r = FBWRound + 1; r <= Rnum - 1; r++) { //å¯¹åº”ä¼°è®¡å€¼éƒ½éœ€è¦è¿›è¡Œæ›´æ–°
 		for (int k = FBWRound; k < r; k++) {
 			Na2FWMinW[r][i][sbox][0] = (Na2FWMinW[r][i][sbox][0] > (Na2FWMinW[k][i][sbox][0] + NaLB[r - k][1]) ? Na2FWMinW[r][i][sbox][0] : (Na2FWMinW[k][i][sbox][0] + NaLB[r - k][1]));
 		}
@@ -212,8 +212,8 @@ inline void UpdateFWLBNa2(int i, int sbox) {
 }
 
 inline void UpdateBWLBNa1(int i) {
-	if (FBRoundOverTag) { //ËÑµ½µ×
-		Na1BWMinW[FBWRound][i][1] = 1; // ±ê¼Ç¸Ã±äÁ¿ËÑË÷µ½µ×
+	if (FBRoundOverTag) { //æœåˆ°åº•
+		Na1BWMinW[FBWRound][i][1] = 1; // æ ‡è®°è¯¥å˜é‡æœç´¢åˆ°åº•
 
 		__m128i** NaBestTrail = new __m128i * [FBWRound];
 		*NaBestTrail = new __m128i[FBWRound * State_NUM];
@@ -226,7 +226,7 @@ inline void UpdateBWLBNa1(int i) {
 
 	if (FindBn || BWSearchOver) Na1BWMinW[FBWRound][i][0] = BWBn;
 	else Na1BWMinW[FBWRound][i][0] = BWBn + 1;
-	for (int r = FBWRound + 1; r <= Rnum - 1; r++) { //¶ÔÓ¦¹À¼ÆÖµ¶¼ĞèÒª¸Ä±ä
+	for (int r = FBWRound + 1; r <= Rnum - 1; r++) { //å¯¹åº”ä¼°è®¡å€¼éƒ½éœ€è¦æ”¹å˜
 		for (int k = FBWRound; k < r; k++) {
 			Na1BWMinW[r][i][0] = (Na1BWMinW[r][i][0] > (Na1BWMinW[k][i][0] + NaLB[r - k][1]) ? Na1BWMinW[r][i][0] : (Na1BWMinW[k][i][0] + NaLB[r - k][1]));
 		}
@@ -235,13 +235,13 @@ inline void UpdateBWLBNa1(int i) {
 }
 
 inline void UpdateBWLBNa2(int i, int sbox) {
-	if (FBRoundOverTag) { //ËÑµ½µ×
-		Na2BWMinW[FBWRound][i][sbox][1] = 1; // ±ê¼Ç¸Ã±äÁ¿ËÑË÷µ½µ×
+	if (FBRoundOverTag) { //æœåˆ°åº•
+		Na2BWMinW[FBWRound][i][sbox][1] = 1; // æ ‡è®°è¯¥å˜é‡æœç´¢åˆ°åº•
 	}
 
 	if (FindBn || BWSearchOver) Na2BWMinW[FBWRound][i][sbox][0] = BWBn;
 	else Na2BWMinW[FBWRound][i][sbox][0] = BWBn + 1;
-	for (int r = FBWRound + 1; r <= Rnum - 1; r++) { //¶ÔÓ¦¹À¼ÆÖµ¶¼ĞèÒª¸Ä±ä
+	for (int r = FBWRound + 1; r <= Rnum - 1; r++) { //å¯¹åº”ä¼°è®¡å€¼éƒ½éœ€è¦æ”¹å˜
 		for (int k = FBWRound; k < r; k++) {
 			Na2BWMinW[r][i][sbox][0] = (Na2BWMinW[r][i][sbox][0] > (Na2BWMinW[k][i][sbox][0] + NaLB[r - k][2]) ?
 				Na2BWMinW[r][i][sbox][0] : (Na2BWMinW[k][i][sbox][0] + NaLB[r - k][2]));
@@ -263,7 +263,7 @@ void BWRound_n(STATE s) {
 	}
 
 	if (GenBnTag) {
-		//À©Õ¹
+		//æ‰©å±•
 		Bn = s.W;
 		FindBn = true;
 		BNPRnum = NPRnum;
@@ -275,7 +275,7 @@ void BWRound_n(STATE s) {
 	}
 	else {
 		if (NPRnum == Rnum) {
-			//Ö»ÄæÏòËÑË÷-> ×îºó±ØÈ»×îÓÅ
+			//åªé€†å‘æœç´¢-> æœ€åå¿…ç„¶æœ€ä¼˜
 			Bn = s.W + ODirWMin;
 			FindBn = true; SubFindBn = true; BNPRnum = NPRnum; BnInNA = NaIndex;
 			memcpy(BestTrail, TmpBestTrail, Rnum * STATE_LEN);
@@ -301,7 +301,7 @@ void BWRound_i(STATE s, __m128i sbx_out[]) {
 		if ((!FindBn && !BWSearchOver && (s.W + s.w + BWWeightOrderW[s.sbx_in[s.j]][i] + asn * weight[1] + NaLB[s.rnum - 2][NaBWIndex]) > BWBn)
 			|| ((FindBn || BWSearchOver) && (s.W + s.w + BWWeightOrderW[s.sbx_in[s.j]][i] + asn * weight[1] + NaLB[s.rnum - 2][NaBWIndex]) >= BWBn)) continue;
 		if (s.j == s.sbx_num) {
-			if (asn < NaBWIndex + 1) continue; //ÏÂÒ»ÂÖasnĞ¡ÓÚÏÂ½ç£¬·µ»Ø
+			if (asn < NaBWIndex + 1) continue; //ä¸‹ä¸€è½®asnå°äºä¸‹ç•Œï¼Œè¿”å›
 			STATE s_nr = BWupdate_state_row(s, BWWeightOrderW[s.sbx_in[s.j]][i], sbx_out);
 			if (s.sbx_num == 1 && !GenBnTag) record_sbx1_value = NA2_SBX1_VALUE;
 						
@@ -344,7 +344,7 @@ void BWRound_i(STATE s, __m128i sbx_out[]) {
 	return;
 }
 
-void FWRound_n(STATE s) { // NPRnum==1 ²Å»á½øÈë¸Ãº¯Êı
+void FWRound_n(STATE s) { // NPRnum==1 æ‰ä¼šè¿›å…¥è¯¥å‡½æ•°
 	s.W    += s.w;
 	t_w[s.rnum - 1] = s.w;
 	FWBn		  = s.W;
@@ -385,7 +385,7 @@ void FWRound_i(STATE s, __m128i sbx_out[]) {
 			if (asn < NaIndex + 1) continue;
 			STATE s_nr = FWupdate_state_row(s, FWWeightOrderW[s.sbx_in[s.j]][i], sbx_out);
 
-			if (s.sbx_num == 0 && !GenBnTag) { //ÓÃÒÑÖªµÄÏÂ½çÅĞ¶ÏÊÇ·ñËÑË÷
+			if (s.sbx_num == 0 && !GenBnTag) { //ç”¨å·²çŸ¥çš„ä¸‹ç•Œåˆ¤æ–­æ˜¯å¦æœç´¢
 				if ((!FindBn && (s_nr.W + Na1FWMinW[Rnum - s.rnum][Na1InputIndex[FWWeightOrderIndex[s.sbx_in[s.j]][i]]][0] > FWBn))
 					|| (FindBn && (s_nr.W + Na1FWMinW[Rnum - s.rnum][Na1InputIndex[FWWeightOrderIndex[s.sbx_in[s.j]][i]]][0] >= FWBn))) continue;
 			}
@@ -411,7 +411,7 @@ void FWRound_i(STATE s, __m128i sbx_out[]) {
 			}
 
 			if (s.sbx_num == 0 && !GenBnTag) {
-				//½øÈëËÑË÷£¬¿ÉÒÔ¸üĞÂÏÂ½ç
+				//è¿›å…¥æœç´¢ï¼Œå¯ä»¥æ›´æ–°ä¸‹ç•Œ
 				if (FindBn) Na1FWMinW[Rnum - s.rnum][Na1InputIndex[FWWeightOrderIndex[s.sbx_in[s.j]][i]]][0] = FWBn - s_nr.W;
 				else Na1FWMinW[Rnum - s.rnum][Na1InputIndex[FWWeightOrderIndex[s.sbx_in[s.j]][i]]][0] = FWBn - s_nr.W + 1;
 			}
@@ -435,9 +435,9 @@ void FWRound_i(STATE s, __m128i sbx_out[]) {
 	return;
 }
 
-void FWRound_1(STATE s, __m128i sbx_out[], Tree p) { //´ÓµÚÒ»ÂÖ¿ªÊ¼ËÑË÷£¬ÓÃÓÚNA3
+void FWRound_1(STATE s, __m128i sbx_out[], Tree p) { //ä»ç¬¬ä¸€è½®å¼€å§‹æœç´¢ï¼Œç”¨äºNA3
 	int asn; int i;
-	for (i = 1; i < SBox_SIZE; i++) { //ÊäÈëµÄ¶¼ÊÇ»îÔ¾SBox£¬ËùÒÔ±ØĞë´Ó1¿ªÊ¼: ÓĞ¿ÉÄÜËÑË÷µ½µ×
+	for (i = 1; i < SBox_SIZE; i++) { //è¾“å…¥çš„éƒ½æ˜¯æ´»è·ƒSBoxï¼Œæ‰€ä»¥å¿…é¡»ä»1å¼€å§‹: æœ‰å¯èƒ½æœç´¢åˆ°åº•
 		if ((!FindBn && (s.w + Round1MinW[i] + NaLB[Rnum - 1][NaIndex] > FWBn)) || (FindBn && (s.w + Round1MinW[i] + NaLB[Rnum - 1][NaIndex] >= FWBn))) break;
 		sbx_out[0] = _mm_xor_si128(sbx_out[0], Round1MinSPTableXor[s.sbx_a[s.j]][i][0]);
 		asn = SBox_NUM - _mm_popcnt_u32(_mm_movemask_epi8(_mm_cmpeq_epi8(sbx_out[0], count_asn)));
@@ -472,21 +472,21 @@ void FWRound_1(STATE s, __m128i sbx_out[], Tree p) { //´ÓµÚÒ»ÂÖ¿ªÊ¼ËÑË÷£¬ÓÃÓÚNA3
 }
 
 void Round_NA1() { 
-	//NA1ÏÈÕûÌåÅĞ¶Ï£¬ÔÙËÑË÷
+	//NA1å…ˆæ•´ä½“åˆ¤æ–­ï¼Œå†æœç´¢
 	UpdateFWRoundNa1 = Rnum - 1; UpdateBWRoundNa1 = Rnum - 1;
 	if ((!FindBn && (NaLB[Rnum][0] > Bn)) || (FindBn && (NaLB[Rnum][0] >= Bn))) return;
 
 	NaIndex = 0; NaBWIndex = 1;
 	initial_Trail();
 	SubFindBn = false;
-	//ËÑËØÖ®Ç°µÃÅĞ¶¨×Ó¼¯µÄÖØÁ¿ÏÂ½ç
-	NPRnum = 1;      //¶¼±éÀú: Ö»±éÀúÊä³ö
-	UpdateFW = true; //Ö»ÓĞÕıÏòËÑË÷£¬¶¼²»»áËÑË÷µ½µ×£¬Òò´Ë¶¼ĞèÒª½øĞĞÒ»¸ö¸üĞÂ£¬Í³Ò»true
-	STATE s(2, 0);   //´ÓµÚ¶şÂÖ¿ªÊ¼ËÑË÷
+	//æœç´ ä¹‹å‰å¾—åˆ¤å®šå­é›†çš„é‡é‡ä¸‹ç•Œ
+	NPRnum = 1;      //éƒ½éå†: åªéå†è¾“å‡º
+	UpdateFW = true; //åªæœ‰æ­£å‘æœç´¢ï¼Œéƒ½ä¸ä¼šæœç´¢åˆ°åº•ï¼Œå› æ­¤éƒ½éœ€è¦è¿›è¡Œä¸€ä¸ªæ›´æ–°ï¼Œç»Ÿä¸€true
+	STATE s(2, 0);   //ä»ç¬¬äºŒè½®å¼€å§‹æœç´¢
 	ALIGNED_TYPE_(__m128i, 16) sbx_out[State_NUM]; memset(sbx_out, 0, STATE_LEN);
 	//clock_t na_s, na_e;
 	//na_s = clock();
-	if (Rnum == 2) { //Ö±½Ó¸ù¾İ¶ÔÓ¦ÊäÈëºÍÊä³öÕÒ×îĞ¡¼´¿É
+	if (Rnum == 2) { //ç›´æ¥æ ¹æ®å¯¹åº”è¾“å…¥å’Œè¾“å‡ºæ‰¾æœ€å°å³å¯
 		for (int i = 0; i < NA1_NUM; i++) {
 			if ((!FindBn && (Na1FWMinW[1][i][0] + Na1RoundNPInput[i][3]) > Bn) || (FindBn && (Na1FWMinW[1][i][0] + Na1RoundNPInput[i][3]) >= Bn)) continue;
 			FindBn = true; SubFindBn = true; BNPRnum = NPRnum;	BnInNA = NaIndex;
@@ -497,10 +497,10 @@ void Round_NA1() {
 		}
 	}
 	else {
-		for (int i = 0; i < NA1_NUM; i++) {  //Ö»ÔÚÕâ¿é¸üĞÂÕıÏòLBArr£¬×îºóÒ»ÂÖ¼´ÊÇ×îĞ¡ÖØÁ¿
+		for (int i = 0; i < NA1_NUM; i++) {  //åªåœ¨è¿™å—æ›´æ–°æ­£å‘LBArrï¼Œæœ€åä¸€è½®å³æ˜¯æœ€å°é‡é‡
 			if ((!FindBn && (Na1FWMinW[Rnum - 1][i][0] + Na1RoundNPInput[i][3] > Bn)) || (FindBn && (Na1FWMinW[Rnum - 1][i][0] + Na1RoundNPInput[i][3] >= Bn))) continue;
 			FBRoundOverTag = false; FBWRound = Rnum - 1; ODirWMin = Na1RoundNPInput[i][3]; FWBn = Bn - ODirWMin;
-			//¼ÇÂ¼ÏÂÒ»ÂÖÊäÈëµÄĞÅÏ¢
+			//è®°å½•ä¸‹ä¸€è½®è¾“å…¥çš„ä¿¡æ¯
 			s.W = 0; s.w = Na1RoundNPFWInfo[i][1];
 			memcpy(s.sbx_a, Na1RoundNPFWARRInfo[i][0], ARR_LEN);
 			memcpy(s.sbx_in, Na1RoundNPFWARRInfo[i][1], ARR_LEN);
@@ -518,23 +518,23 @@ void Round_NA1() {
 
 	//for (NPRnum = Rnum; NPRnum >= 2; NPRnum--) {
 	for (NPRnum = 2; NPRnum <= Rnum; NPRnum++) {
-		//ÅĞ¶Ï·Ö¸îÊÇ·ñÔÊĞí½Ó×ÅÍùÏÂËÑË÷
+		//åˆ¤æ–­åˆ†å‰²æ˜¯å¦å…è®¸æ¥ç€å¾€ä¸‹æœç´¢
 		if ((!FindBn && (Na1BWLB[NPRnum - 1] + weight[1] + Na1FWLB[Rnum - NPRnum] > Bn)) || (FindBn && (Na1BWLB[NPRnum - 1] + weight[1] + Na1FWLB[Rnum - NPRnum] >= Bn))) continue;
-		for (int i = 0; i < NA1_NUM; i++) { //±éÀúÊä³ö
-			//µ±Ç°Êä³öÊÇ·ñ¿ÉÒÔ½Ó×ÅÍùÏÂËÑË÷£¿
+		for (int i = 0; i < NA1_NUM; i++) { //éå†è¾“å‡º
+			//å½“å‰è¾“å‡ºæ˜¯å¦å¯ä»¥æ¥ç€å¾€ä¸‹æœç´¢ï¼Ÿ
 			if ((!FindBn && (Na1BWMinW[NPRnum - 1][i][0] + Na1FWOutLB[Rnum - NPRnum][i][0] > Bn))
 				|| (FindBn && (Na1BWMinW[NPRnum - 1][i][0] + Na1FWOutLB[Rnum - NPRnum][i][0] >= Bn))) continue;
 			BWSearchOver = false;
 			if (NPRnum == 2) {
-				//Ö±½Ó¿ÉÒÔ¼ÆËãµÃµ½ÄæÏò×îÓÅ
-				BWSearchOver = true; BWBn = Na1BWMinW[NPRnum - 1][i][0];  //ÓÃÓÚÕıÏòËÑË÷ //°üÀ¨NPÂÖµÄ×îĞ¡ÖØÁ¿£¨ÓÃÓÚ¸üĞÂÕıÏò±í¸ñ£©£¬Í³Ò»ºóĞø¼ÆËã
+				//ç›´æ¥å¯ä»¥è®¡ç®—å¾—åˆ°é€†å‘æœ€ä¼˜
+				BWSearchOver = true; BWBn = Na1BWMinW[NPRnum - 1][i][0];  //ç”¨äºæ­£å‘æœç´¢ //åŒ…æ‹¬NPè½®çš„æœ€å°é‡é‡ï¼ˆç”¨äºæ›´æ–°æ­£å‘è¡¨æ ¼ï¼‰ï¼Œç»Ÿä¸€åç»­è®¡ç®—
 				t_w[0] = Na1RoundNPBWInfo[i][1];
 				memcpy(Trail[0], INVPTable[0][Na1RoundNPInput[i][0]], STATE_LEN);
 			}
 			else {
-				//NPRnum > 2													//ÅĞ¶ÏÊÇ·ñĞèÒª¸üĞÂ£¬Èç¹û¶ÔÓ¦Êä³ö¶ÔÓ¦ÂÖÊıËÑË÷µ½µ×Ôò²»ÓÃ£¬·ñÔò£¬ĞèÒª
+				//NPRnum > 2													//åˆ¤æ–­æ˜¯å¦éœ€è¦æ›´æ–°ï¼Œå¦‚æœå¯¹åº”è¾“å‡ºå¯¹åº”è½®æ•°æœç´¢åˆ°åº•åˆ™ä¸ç”¨ï¼Œå¦åˆ™ï¼Œéœ€è¦
 				if (Na1BWMinW[NPRnum - 1][i][1]) {
-					//Ö®Ç°ËÑË÷µ½µ×£¬¹Ê¿ÉÒÔÖ±½ÓµÃµ½×îÓÅÖØÁ¿
+					//ä¹‹å‰æœç´¢åˆ°åº•ï¼Œæ•…å¯ä»¥ç›´æ¥å¾—åˆ°æœ€ä¼˜é‡é‡
 					BWSearchOver = true; BWBn = Na1BWMinW[NPRnum - 1][i][0];
 					auto itor = NaBestTrailMap.find(&Na1BWMinW[NPRnum - 1][i][0]);
 					if (itor != NaBestTrailMap.end()) {
@@ -546,13 +546,13 @@ void Round_NA1() {
 					UpdateBW = true; FBRoundOverTag = false; FBWRound = NPRnum - 1;
 					ODirWMin = Na1FWOutLB[Rnum - NPRnum][i][0]; BWBn = Bn - ODirWMin;
 					s.W = 0; 
-					s.w = Na1RoundNPBWInfo[i][1];								//ÉÏÒ»ÂÖµÄ×îĞ¡ÖØÁ¿
+					s.w = Na1RoundNPBWInfo[i][1];								//ä¸Šä¸€è½®çš„æœ€å°é‡é‡
 					memcpy(s.sbx_a, Na1RoundNPBWARRInfo[i][0], ARR_LEN);
 					memcpy(s.sbx_in, Na1RoundNPBWARRInfo[i][1], ARR_LEN);
 					s.sbx_num = Na1RoundNPBWInfo[i][0] - 1;
-					s.rnum = NPRnum - 1; //Êµ¼ÊÉÏ´ÓÉÏÒ»ÂÖ¿ªÊ¼
+					s.rnum = NPRnum - 1; //å®é™…ä¸Šä»ä¸Šä¸€è½®å¼€å§‹
 					memcpy(TmpBestTrail[NPRnum - 2], INVPTable[0][Na1RoundNPInput[i][0]], STATE_LEN);
-					//ÕıÏòËÑË÷
+					//æ­£å‘æœç´¢
 					BWRound_i(s, sbx_out);
 
 					UpdateBWLBNa1(i);
@@ -560,29 +560,29 @@ void Round_NA1() {
 
 			}
 
-			//ÅĞ¶ÏÄæÏòËÑË÷Íê£¬ÇÒÖØÁ¿ÈÔÔÚ·¶Î§ÄÚ£¬ÔòÕıÏòËÑË÷£¬»¹ÒªÅĞ¶ÏÕıÏò¼¸ÂÖ£¬Èç¹ûÊÇ1/2ÂÖ£¬¿ÉÒÔÖ±½Ó¸ø³ö£¬¶ø²»ÓÃËÑË÷ºÍ¸üĞÂÈÎÒâÏûÏ¢
+			//åˆ¤æ–­é€†å‘æœç´¢å®Œï¼Œä¸”é‡é‡ä»åœ¨èŒƒå›´å†…ï¼Œåˆ™æ­£å‘æœç´¢ï¼Œè¿˜è¦åˆ¤æ–­æ­£å‘å‡ è½®ï¼Œå¦‚æœæ˜¯1/2è½®ï¼Œå¯ä»¥ç›´æ¥ç»™å‡ºï¼Œè€Œä¸ç”¨æœç´¢å’Œæ›´æ–°ä»»æ„æ¶ˆæ¯
 			if (!BWSearchOver) continue;
 
 			if (NPRnum == Rnum) continue;
 			else if (NPRnum == Rnum - 1) {
-				//¿ÉÒÔÖ±½Ó¸ù¾İ±í¸ñµÃµ½×îĞ¡µÄ
+				//å¯ä»¥ç›´æ¥æ ¹æ®è¡¨æ ¼å¾—åˆ°æœ€å°çš„
 				for (int Out = 0; Out < NA1_NUM; Out++) {
 					if (Na1OutWeightOrder[i][Out] == INFINITY) break;
 					if ((!FindBn && (BWBn + Na1OutWeightOrder[i][Out] + Na1RoundNPFWInfo[Na1InOutLink[i][Out]][1] > Bn))
 						|| (FindBn && (BWBn + Na1OutWeightOrder[i][Out] + Na1RoundNPFWInfo[Na1InOutLink[i][Out]][1] >= Bn))) continue;
 					FindBn = true; SubFindBn = true; BNPRnum = NPRnum; BnInNA = NaIndex;
-					Bn = BWBn + Na1OutWeightOrder[i][Out] + Na1RoundNPFWInfo[Na1InOutLink[i][Out]][1]; //ÕûÌåÖØÁ¿
+					Bn = BWBn + Na1OutWeightOrder[i][Out] + Na1RoundNPFWInfo[Na1InOutLink[i][Out]][1]; //æ•´ä½“é‡é‡
 					memcpy(Best_w, t_w, NPRnum * sizeof(int));
 					Best_w[NPRnum - 1] = Na1OutWeightOrder[i][Out];
 					Best_w[NPRnum] = Na1RoundNPFWInfo[Na1InOutLink[i][Out]][1];
 					memcpy(BestTrail, Trail, NPRnum * STATE_LEN);
-					memcpy(BestTrail[NPRnum], PTable[0][Na1RoundNPInput[Na1InOutLink[i][Out]][0]], STATE_LEN); //Êä³ö²î·Ö
+					memcpy(BestTrail[NPRnum], PTable[0][Na1RoundNPInput[Na1InOutLink[i][Out]][0]], STATE_LEN); //è¾“å‡ºå·®åˆ†
 				}
 			}
 			else if (Na1FWOutLB[Rnum - NPRnum][i][1]) {
-				//¿ÉÒÔÖ±½ÓµÃµ½×îÓÅ
+				//å¯ä»¥ç›´æ¥å¾—åˆ°æœ€ä¼˜
 				FindBn = true; SubFindBn = true; BNPRnum = NPRnum; BnInNA = NaIndex;
-				Bn = BWBn + Na1FWOutLB[Rnum - NPRnum][i][0]; //ÕûÌåÖØÁ¿
+				Bn = BWBn + Na1FWOutLB[Rnum - NPRnum][i][0]; //æ•´ä½“é‡é‡
 				auto itor = NaBestTrailMap.find(&Na1FWMinW[Rnum - NPRnum][Na1InOutLink[i][Na1FWOutLB[Rnum - NPRnum][i][2]]][0]);
 				if (itor != NaBestTrailMap.end()) {
 					memcpy(Trail[NPRnum], &itor->second.first[0][0], (Rnum - NPRnum) * STATE_LEN);
@@ -599,7 +599,7 @@ void Round_NA1() {
 						|| (FindBn && (BWBn + Na1OutWeightOrder[i][Out] + Na1FWMinW[Rnum - NPRnum][Na1InOutLink[i][Out]][0] >= Bn))) continue;
 					if (Na1FWMinW[Rnum - NPRnum][Na1InOutLink[i][Out]][1]) {
 						FindBn = true; SubFindBn = true; BNPRnum = NPRnum; BnInNA = NaIndex;
-						Bn = BWBn + Na1OutWeightOrder[i][Out] + Na1FWMinW[Rnum - NPRnum][Na1InOutLink[i][Out]][0]; //ÕûÌåÖØÁ¿
+						Bn = BWBn + Na1OutWeightOrder[i][Out] + Na1FWMinW[Rnum - NPRnum][Na1InOutLink[i][Out]][0]; //æ•´ä½“é‡é‡
 						auto itor = NaBestTrailMap.find(&Na1FWMinW[Rnum - NPRnum][Na1InOutLink[i][Out]][0]);
 						if (itor != NaBestTrailMap.end()) {
 							memcpy(Trail[NPRnum], &itor->second.first[0][0], (Rnum - NPRnum) * STATE_LEN);
@@ -645,20 +645,20 @@ void Round_NA1() {
 }
 
 void Round_NA2() { 
-	//NA2ÏÈÕûÌåÅĞ¶Ï£¬ÔÙËÑË÷
+	//NA2å…ˆæ•´ä½“åˆ¤æ–­ï¼Œå†æœç´¢
 	UpdateFWRoundNa2 = Rnum - 1; UpdateBWRoundNa2 = Rnum - 1;
 	if ((!FindBn && (NaLB[Rnum][1] > Bn)) || (FindBn && (NaLB[Rnum][1] >= Bn))) return;
 	SubFindBn = false;
 	NaIndex = 1; NaBWIndex = 2;
 	initial_Trail();
 	NPRnum = 1;
-	UpdateFW = true; //ÕıÏòËÑË÷£¬¸üĞÂLBArr
+	UpdateFW = true; //æ­£å‘æœç´¢ï¼Œæ›´æ–°LBArr
 	STATE s(2, 0);
 	ALIGNED_TYPE_(__m128i, 16) sbx_out[State_NUM]; memset(sbx_out, 0, STATE_LEN);
 	//clock_t na_s, na_e;
 	//na_s = clock();
-	//Na2Ã»ÓĞ½øÈë¾ßÌåµÄËÑË÷º¯Êı£¬ĞèÒª±ê¼Ç»îÔ¾SBoxµÄ¸öÊı
-	if (Rnum == 2) { //Ö±½Ó¸ù¾İ¶ÔÓ¦ÊäÈëºÍÊä³öÕÒ×îĞ¡¼´¿É
+	//Na2æ²¡æœ‰è¿›å…¥å…·ä½“çš„æœç´¢å‡½æ•°ï¼Œéœ€è¦æ ‡è®°æ´»è·ƒSBoxçš„ä¸ªæ•°
+	if (Rnum == 2) { //ç›´æ¥æ ¹æ®å¯¹åº”è¾“å…¥å’Œè¾“å‡ºæ‰¾æœ€å°å³å¯
 		for (int s = 0; s < (SBox_NUM / 2); s++) {
 			for (int i = 0; i < NA2_NUM; i++) {
 				if ((!FindBn && (Na2FWMinW[1][i][s][0] + Na2RoundNPInput[i][3]) > Bn) || (FindBn && (Na2FWMinW[1][i][s][0] + Na2RoundNPInput[i][3]) >= Bn)) continue;
@@ -673,7 +673,7 @@ void Round_NA2() {
 	else {
 		for (int sbox = 0; sbox < (SBox_NUM / 2); sbox++) {
 			for (int i = 0; i < NA2_NUM; i++) {
-				//ÓÃÏÂ½ç¼ôÖ¦Ó¦¸Ã¸ü¿ì
+				//ç”¨ä¸‹ç•Œå‰ªæåº”è¯¥æ›´å¿«
 				if ((!FindBn && (Na2FWMinW[Rnum - 1][i][sbox][0] + Na2RoundNPInput[i][3] > Bn)) || (FindBn && (Na2FWMinW[Rnum - 1][i][sbox][0] + Na2RoundNPInput[i][3] >= Bn))) continue;
 				FBRoundOverTag = false; FBWRound = Rnum - 1;
 				ODirWMin = Na2RoundNPInput[i][3]; FWBn = Bn - ODirWMin;
@@ -694,25 +694,25 @@ void Round_NA2() {
 	//printf("only fw Time: %fs, %fmin\n", ((double)(na_e - na_s)) / CLOCKS_PER_SEC, (((double)(na_e - na_s)) / CLOCKS_PER_SEC) / 60);
 
 	for (NPRnum = 2; NPRnum <= Rnum; NPRnum++) {
-		//ÅĞ¶Ï·Ö¸îÊÇ·ñÔÊĞí½Ó×ÅÍùÏÂËÑË÷
+		//åˆ¤æ–­åˆ†å‰²æ˜¯å¦å…è®¸æ¥ç€å¾€ä¸‹æœç´¢
 		if ((!FindBn && (Na2BWLB[NPRnum - 1] + 2 * weight[1] + Na2FWLB[Rnum - NPRnum] > Bn)) || (FindBn && (Na2BWLB[NPRnum - 1] + 2 * weight[1] + Na2FWLB[Rnum - NPRnum] >= Bn))) continue;
 		for (int sbox = 0; sbox < (SBox_NUM / 2); sbox++) {
-			for (int i = 0; i < NA2_NUM; i++) { //±éÀúÊä³ö						
+			for (int i = 0; i < NA2_NUM; i++) { //éå†è¾“å‡º						
 				if ((!FindBn && (Na2BWMinW[NPRnum - 1][i][sbox][0] + Na2FWOutLB[Rnum - NPRnum][i][sbox][0] > Bn))
 					|| (FindBn && (Na2BWMinW[NPRnum - 1][i][sbox][0] + Na2FWOutLB[Rnum - NPRnum][i][sbox][0] >= Bn))) continue;
 				BWSearchOver = false;
 				if (NPRnum == 2) {
-					//¿ÉÒÔÖ±½Ó¸ù¾İ±í¸ñµÃµ½×îĞ¡µÄ
+					//å¯ä»¥ç›´æ¥æ ¹æ®è¡¨æ ¼å¾—åˆ°æœ€å°çš„
 					BWSearchOver = true;
-					BWBn = Na2BWMinW[NPRnum - 1][i][sbox][0];  //ÓÃÓÚÕıÏòËÑË÷ //°üÀ¨NPÂÖµÄ×îĞ¡ÖØÁ¿£¬Í³Ò»ºóĞø¼ÆËã
+					BWBn = Na2BWMinW[NPRnum - 1][i][sbox][0];  //ç”¨äºæ­£å‘æœç´¢ //åŒ…æ‹¬NPè½®çš„æœ€å°é‡é‡ï¼Œç»Ÿä¸€åç»­è®¡ç®—
 					t_w[0] = Na2RoundNPBWInfo[i][sbox][1];
 					memcpy(Trail[0], Na2BWOutput[i][sbox], STATE_LEN);
 				}
 				else {
-					//ÅĞ¶ÏÊÇ·ñĞèÒªÕıÏò¸üĞÂ£¬Èç¹û¶ÔÓ¦Êä³ö¶ÔÓ¦ÂÖÊıËÑË÷µ½µ×Ôò²»ÓÃ£¬·ñÔò£¬ĞèÒª
+					//åˆ¤æ–­æ˜¯å¦éœ€è¦æ­£å‘æ›´æ–°ï¼Œå¦‚æœå¯¹åº”è¾“å‡ºå¯¹åº”è½®æ•°æœç´¢åˆ°åº•åˆ™ä¸ç”¨ï¼Œå¦åˆ™ï¼Œéœ€è¦
 					if (Na2BWMinW[NPRnum - 1][i][sbox][1]) {
 						BWSearchOver = true;
-						BWBn = Na2BWMinW[NPRnum - 1][i][sbox][0];  //ÓÃÓÚÕıÏòËÑË÷ //°üÀ¨NPÂÖµÄ×îĞ¡ÖØÁ¿£¬Í³Ò»ºóĞø¼ÆËã
+						BWBn = Na2BWMinW[NPRnum - 1][i][sbox][0];  //ç”¨äºæ­£å‘æœç´¢ //åŒ…æ‹¬NPè½®çš„æœ€å°é‡é‡ï¼Œç»Ÿä¸€åç»­è®¡ç®—
 						auto itor = NaBestTrailMap.find(&Na2BWMinW[NPRnum - 1][i][sbox][0]);
 						if (itor != NaBestTrailMap.end()) {
 							memcpy(Trail, &itor->second.first[0][0], (NPRnum - 1) * STATE_LEN);
@@ -723,11 +723,11 @@ void Round_NA2() {
 						UpdateBW = true; FBRoundOverTag = false; FBWRound = NPRnum - 1;
 						ODirWMin = Na2FWOutLB[Rnum - NPRnum][i][sbox][0]; BWBn = Bn - ODirWMin;
 						s.W = 0;
-						s.w = Na2RoundNPBWInfo[i][sbox][1];                            //ÏÂÒ»ÂÖµÄ×îĞ¡ÖØÁ¿
+						s.w = Na2RoundNPBWInfo[i][sbox][1];                            //ä¸‹ä¸€è½®çš„æœ€å°é‡é‡
 						memcpy(s.sbx_a, Na2RoundNPBWARRInfo[i][sbox][0], ARR_LEN);
 						memcpy(s.sbx_in, Na2RoundNPBWARRInfo[i][sbox][1], ARR_LEN);
 						s.sbx_num = Na2RoundNPBWInfo[i][sbox][0] - 1;
-						s.rnum = NPRnum - 1; //Êµ¼ÊÉÏ´ÓÏÂÒ»ÂÖ¿ªÊ¼
+						s.rnum = NPRnum - 1; //å®é™…ä¸Šä»ä¸‹ä¸€è½®å¼€å§‹
 						memcpy(TmpBestTrail[NPRnum - 2], Na2BWOutput[i][sbox], STATE_LEN);
 						BWRound_i(s, sbx_out);
 
@@ -736,16 +736,16 @@ void Round_NA2() {
 
 				}
 
-				//ÅĞ¶ÏÄæÏòËÑË÷Íê£¬ÇÒÖØÁ¿ÈÔÔÚ·¶Î§ÄÚ£¬ÔòÕıÏòËÑË÷
+				//åˆ¤æ–­é€†å‘æœç´¢å®Œï¼Œä¸”é‡é‡ä»åœ¨èŒƒå›´å†…ï¼Œåˆ™æ­£å‘æœç´¢
 				if (!BWSearchOver) continue;
 				if (NPRnum == Rnum) continue;
-				else if (NPRnum == Rnum - 1) { //Ö±½Ó¿ÉÒÔ¼ÆËãµÃµ½ÄæÏò×îÓÅ
+				else if (NPRnum == Rnum - 1) { //ç›´æ¥å¯ä»¥è®¡ç®—å¾—åˆ°é€†å‘æœ€ä¼˜
 					for (int Out = 0; Out < NA2_NUM; Out++) {
 						if (Na2OutWeightOrder[i][Out] == INFINITY) break;
 						if ((!FindBn && (BWBn + Na2OutWeightOrder[i][Out] + Na2RoundNPFWInfo[Na2InOutLink[i][Out]][sbox][1] > Bn))
 							|| (FindBn && (BWBn + Na2OutWeightOrder[i][Out] + Na2RoundNPFWInfo[Na2InOutLink[i][Out]][sbox][1] >= Bn))) continue;
 						FindBn = true; SubFindBn = true; BNPRnum = NPRnum; BnInNA = NaIndex;
-						Bn = BWBn + Na2OutWeightOrder[i][Out] + Na2RoundNPFWInfo[Na2InOutLink[i][Out]][sbox][1]; //ÕûÌåÖØÁ¿
+						Bn = BWBn + Na2OutWeightOrder[i][Out] + Na2RoundNPFWInfo[Na2InOutLink[i][Out]][sbox][1]; //æ•´ä½“é‡é‡
 						memcpy(Best_w, t_w, Rnum * sizeof(int));
 						Best_w[NPRnum - 1] = Na2RoundNPFWInfo[Na1InOutLink[i][Out]][sbox][1];
 						Best_w[NPRnum] = Na2OutWeightOrder[i][Out];
@@ -755,7 +755,7 @@ void Round_NA2() {
 				}
 				else if (Na2FWOutLB[Rnum - NPRnum][i][sbox][1]) {
 					FindBn = true; SubFindBn = true; BNPRnum = NPRnum; BnInNA = NaIndex;
-					Bn = BWBn + Na2FWOutLB[Rnum - NPRnum][i][sbox][0]; //ÕûÌåÖØÁ¿
+					Bn = BWBn + Na2FWOutLB[Rnum - NPRnum][i][sbox][0]; //æ•´ä½“é‡é‡
 					auto itor = NaBestTrailMap.find(&Na2FWMinW[Rnum - NPRnum][Na2InOutLink[i][Na2FWOutLB[Rnum - NPRnum][i][sbox][2]]][sbox][0]);
 					if (itor != NaBestTrailMap.end()) {
 						memcpy(Trail[NPRnum], &itor->second.first[0][0], (Rnum - NPRnum) * STATE_LEN);
@@ -773,7 +773,7 @@ void Round_NA2() {
 							|| (FindBn && (BWBn + Na2OutWeightOrder[i][Out] + Na2FWMinW[Rnum - NPRnum][Na2InOutLink[i][Out]][sbox][0] >= Bn))) continue;
 						if (Na2FWMinW[Rnum - NPRnum][Na2InOutLink[i][Out]][sbox][1]) {
 							FindBn = true; SubFindBn = true; BNPRnum = NPRnum; BnInNA = NaIndex;
-							Bn = BWBn + Na2OutWeightOrder[i][Out] + Na2FWMinW[Rnum - NPRnum][Na2InOutLink[i][Out]][sbox][0]; //ÕûÌåÖØÁ¿
+							Bn = BWBn + Na2OutWeightOrder[i][Out] + Na2FWMinW[Rnum - NPRnum][Na2InOutLink[i][Out]][sbox][0]; //æ•´ä½“é‡é‡
 							auto itor = NaBestTrailMap.find(&Na2FWMinW[Rnum - NPRnum][Na2InOutLink[i][Out]][sbox][0]);
 							if (itor != NaBestTrailMap.end()) {
 								memcpy(Trail[NPRnum], &itor->second.first[0][0], (Rnum - NPRnum) * STATE_LEN);
@@ -821,8 +821,8 @@ void Round_NA2() {
 
 }
 
-void Round_NA3() { //·´Õı²»»á´ÓÕâËÑË÷µ½
-	//NA3ÏÈÕûÌåÅĞ¶ÏÔÙËÑË÷
+void Round_NA3() { //åæ­£ä¸ä¼šä»è¿™æœç´¢åˆ°
+	//NA3å…ˆæ•´ä½“åˆ¤æ–­å†æœç´¢
 	if ((!FindBn && (NaLB[Rnum][2] > Bn)) || (FindBn && (NaLB[Rnum][2] >= Bn))) return;
 	NaIndex = 2; UpdateFW = false; SubFindBn = false;
 	ODirWMin = 0; FWBn = Bn;
@@ -832,13 +832,13 @@ void Round_NA3() { //·´Õı²»»á´ÓÕâËÑË÷µ½
 	ALIGNED_TYPE_(__m128i, 16) tmp_out[State_NUM];
 	memset(tmp_out, 0, STATE_LEN);
 
-	NPRnum = 1; //´ÓµÚÒ»ÂÖ¿ªÊ¼ËÑË÷
+	NPRnum = 1; //ä»ç¬¬ä¸€è½®å¼€å§‹æœç´¢
 
-	// ¼´Ê¹ÓĞÁËsearch pattern£¬»¹ÊÇĞèÒª¼ÇÂ¼»îÔ¾SBox£¬ÎªÁË×îºó¸ù¾İASºÍindex¼ÆËãÊä³ö
+	// å³ä½¿æœ‰äº†search patternï¼Œè¿˜æ˜¯éœ€è¦è®°å½•æ´»è·ƒSBoxï¼Œä¸ºäº†æœ€åæ ¹æ®ASå’Œindexè®¡ç®—è¾“å‡º
 	s.sbx_a[0] = 0; s.sbx_num = 2;
 	while ((!FindBn && ((s.sbx_num + 1) * weight[1] + NaLB[Rnum - 1][2] <= Bn)) || (FindBn && ((s.sbx_num + 1) * weight[1] + NaLB[Rnum - 1][2] < Bn))) {
 		s.w = (s.sbx_num + 1) * weight[1];
-		FWRound_1(s, tmp_out, T); //×îºóÒ»¸öÊÇµ±Ç°µÄ»îÔ¾SBox
+		FWRound_1(s, tmp_out, T); //æœ€åä¸€ä¸ªæ˜¯å½“å‰çš„æ´»è·ƒSBox
 		s.sbx_num++;
 	}
 
@@ -851,7 +851,7 @@ void Round_NA3() { //·´Õı²»»á´ÓÕâËÑË÷µ½
 
 void InitLB() { 
 	//Rnun>=3
-	//³õÊ¼»¯ NaLB : ÔÚËÑË÷º¯ÊıÖĞ¸üĞÂ£º³õÊ¼»¯Îª0£¬Òò´Ë¿ÉÒÔÖ±½Ó±È½Ï£¬Ê¡È¥µÚÒ»ĞĞ
+	//åˆå§‹åŒ– NaLB : åœ¨æœç´¢å‡½æ•°ä¸­æ›´æ–°ï¼šåˆå§‹åŒ–ä¸º0ï¼Œå› æ­¤å¯ä»¥ç›´æ¥æ¯”è¾ƒï¼Œçœå»ç¬¬ä¸€è¡Œ
 	for (int i = 0; i < 3; i++) {
 		NaLB[Rnum][i] = NaLB[1][i] + NaLB[Rnum - 1][i];
 	}
@@ -860,11 +860,11 @@ void InitLB() {
 			NaLB[Rnum][i] = (NaLB[Rnum][i] > (NaLB[r][i] + NaLB[Rnum - r][i]) ? NaLB[Rnum][i] : (NaLB[r][i] + NaLB[Rnum - r][i]));
 		}
 	}
-	//ÕıÏòºÍÄæÏò¾ù¸üĞÂ
+	//æ­£å‘å’Œé€†å‘å‡æ›´æ–°
 	//Na1:
 	bool tag = true;
 	for (int i = 0; i < NA1_NUM; i++) {
-		//³õÊ¼»¯¾ùÎª0£¬Òò´Ë¿ÉÒÔÖ±½Ó¿ªÊ¼±È½Ï
+		//åˆå§‹åŒ–å‡ä¸º0ï¼Œå› æ­¤å¯ä»¥ç›´æ¥å¼€å§‹æ¯”è¾ƒ
 		for (int r = 1; r < Rnum-1; r++) {
 			Na1BWMinW[Rnum - 1][i][0] = (Na1BWMinW[Rnum - 1][i][0] > (Na1BWMinW[r][i][0] + NaLB[Rnum - 1 - r][1]) ?
 				Na1BWMinW[Rnum - 1][i][0] : (Na1BWMinW[r][i][0] + NaLB[Rnum - 1 - r][1]));
@@ -882,7 +882,7 @@ void InitLB() {
 		}
 	}
 
-	//¼ÇÂ¼ÓëÊä³ö¼æÈİµÄ×îĞ¡ÄæÏòÖØÁ¿
+	//è®°å½•ä¸è¾“å‡ºå…¼å®¹çš„æœ€å°é€†å‘é‡é‡
 	for (int i = 0; i < NA1_NUM; i++) {
 		Na1FWOutLB[Rnum - 1][i][0] = Na1FWMinW[Rnum - 1][Na1InOutLink[i][0]][0] + Na1OutWeightOrder[i][0];
 		if (Na1FWMinW[Rnum - 1][Na1InOutLink[i][0]][1]) Na1FWOutLB[Rnum - 1][i][1] = 1;
@@ -907,7 +907,7 @@ void InitLB() {
 	tag = true;
 	for (int i = 0; i < NA2_NUM; i++) {
 		for (int s = 0; s < (SBox_NUM / 2); s++) {
-			//³õÊ¼»¯¾ùÎª0£¬Òò´Ë¿ÉÒÔÖ±½Ó¿ªÊ¼±È½Ï
+			//åˆå§‹åŒ–å‡ä¸º0ï¼Œå› æ­¤å¯ä»¥ç›´æ¥å¼€å§‹æ¯”è¾ƒ
 			for (int r = 1; r < Rnum - 1; r++) {
 				Na2BWMinW[Rnum - 1][i][s][0] = (Na2BWMinW[Rnum - 1][i][s][0] > (Na2BWMinW[r][i][s][0] + NaLB[Rnum - 1 - r][2]) ?
 					Na2BWMinW[Rnum - 1][i][s][0] : (Na2BWMinW[r][i][s][0] + NaLB[Rnum - 1 - r][2]));
@@ -927,7 +927,7 @@ void InitLB() {
 		}
 	}
 
-	for (int i = 0; i < NA2_NUM; i++) { //¹ØĞÄ×ÜÌåµÄ£¬ºóĞøÔÙ¾ßÌåÎÊÌâ¾ßÌå·ÖÎö
+	for (int i = 0; i < NA2_NUM; i++) { //å…³å¿ƒæ€»ä½“çš„ï¼Œåç»­å†å…·ä½“é—®é¢˜å…·ä½“åˆ†æ
 		for (int s = 0; s < (SBox_NUM / 2); s++) {
 			tag = true;
 			for (int j = 0; j < NA2_NUM; j++) {
@@ -955,7 +955,7 @@ void InitLB() {
 
 }
 
-void UpdateLB() { //ËÑË÷ÍêÖ®ºó£¬¸üĞÂÏÂ½çÓÃ£¬¸üĞÂµÄÊÇ×ÜÌåµÄÄÇ¸ö
+void UpdateLB() { //æœç´¢å®Œä¹‹åï¼Œæ›´æ–°ä¸‹ç•Œç”¨ï¼Œæ›´æ–°çš„æ˜¯æ€»ä½“çš„é‚£ä¸ª
 	bool tag1, tag2;
 	//Na1:
 	for (int r = UpdateFWRoundNa1; r <= Rnum - 1; r++) {
@@ -1046,29 +1046,29 @@ void UpdateLB() { //ËÑË÷ÍêÖ®ºó£¬¸üĞÂÏÂ½çÓÃ£¬¸üĞÂµÄÊÇ×ÜÌåµÄÄÇ¸ö
 }
 
 void GenBnUP(int NaTag) {
-	//À©Õ¹r-1µÄ×îÓÅÌØÕ÷£¬µÃµ½BnµÄÉÏ½ç
-	//ÏÈÏòÇ°À©Õ¹
+	//æ‰©å±•r-1çš„æœ€ä¼˜ç‰¹å¾ï¼Œå¾—åˆ°Bnçš„ä¸Šç•Œ
+	//å…ˆå‘å‰æ‰©å±•
 	NPRnum = BNPRnum;
 	if (NaTag == 0) {
-		//Ã»ÓĞÏŞÖÆ
+		//æ²¡æœ‰é™åˆ¶
 		NaIndex = 0; NaBWIndex = 0; 
 	}
 	else if (NaTag == 1) {
-		//×Ó¼¯1
+		//å­é›†1
 		NaIndex = 0; NaBWIndex = 1; 
 	}
 	else {
-		//×Ó¼¯2
+		//å­é›†2
 		NaIndex = 1; NaBWIndex = 2;
 	}
 	ALIGNED_TYPE_(__m128i, 16) sbx_out[State_NUM]; memset(sbx_out, 0, STATE_LEN);
 	ALIGNED_TYPE_(__m128i, 16) sbox_in1[State_NUM]; memset(sbox_in1, 0, STATE_LEN);
 	ALIGNED_TYPE_(__m128i, 16) sbox_in2[State_NUM]; memset(sbox_in2, 0, STATE_LEN);
 	if (NPRnum == Rnum - 1) {
-		//ĞèÒªÏÈÉú³ÉÊäÈë
+		//éœ€è¦å…ˆç”Ÿæˆè¾“å…¥
 		for (int i = 0; i < SBox_NUM; i++) {
 			if ((BestTrail[Rnum - 3][0].m128i_u8[i])) {
-				for (int k = 0; k < State_NUM; k++) { //ÕıÏòÏßĞÔ±ä»»
+				for (int k = 0; k < State_NUM; k++) { //æ­£å‘çº¿æ€§å˜æ¢
 					sbox_in1[k] = _mm_xor_si128(sbox_in1[k], PTable[i][BestTrail[Rnum - 3][0].m128i_u8[i]][k]);
 				}
 			}
@@ -1079,7 +1079,7 @@ void GenBnUP(int NaTag) {
 		memset(sbox_in2, 0, STATE_LEN);
 		for (int i = 0; i < SBox_NUM; i++) {
 			if ((BestTrail[1][0].m128i_u8[i])) {
-				for (int k = 0; k < State_NUM; k++) { //ÕıÏòÏßĞÔ±ä»»
+				for (int k = 0; k < State_NUM; k++) { //æ­£å‘çº¿æ€§å˜æ¢
 					sbox_in2[k] = _mm_xor_si128(sbox_in2[k], INVPTable[i][BestTrail[1][0].m128i_u8[i]][k]);
 				}
 			}
@@ -1100,16 +1100,16 @@ void GenBnUP(int NaTag) {
 
 void matsui() {
 	GenTables();
-	GenRound1Pattern(); //Éú³Épattern²»¼ÇÔÚ×ÜÊ±¼äÀï
+	GenRound1Pattern(); //ç”Ÿæˆpatternä¸è®°åœ¨æ€»æ—¶é—´é‡Œ
 	char FILENAME[50] = { 0 };
 	clock_t s1, e1;
 
 #if(TYPE==0)
-	strcat_s(FILENAME, "result/RECTANGLE_Diff.txt");
+	strcat_s(FILENAME, "RECTANGLE_Diff.txt");
 #elif(TYPE==1)
-	strcat_s(FILENAME, "result/RECTANGLE_Linear.txt");
+	strcat_s(FILENAME, "RECTANGLE_Linear.txt");
 #endif
-	////ÑéÖ¤Ò»ÏÂÁ´½ÓÃ»ÎÊÌâ
+	////éªŒè¯ä¸€ä¸‹é“¾æ¥æ²¡é—®é¢˜
 	//fp = fopen(FILENAME, "a+");
 	//fclose(fp);
 
@@ -1135,7 +1135,7 @@ void matsui() {
 			InitLB();
 			cout << "Bn: " << Bn << endl;
 			start = clock();
-			//¸ù¾İ¹Û²ìÈ·¶¨µÄËÑË÷Ë³Ğò
+			//æ ¹æ®è§‚å¯Ÿç¡®å®šçš„æœç´¢é¡ºåº
 			if (i <= Na12UBRnum) {
 				FindBnNa1 = false; FindBnNa2 = false; FindBnNa3 = false;
 			}
@@ -1152,7 +1152,7 @@ void matsui() {
 			while (!FindBn) {
 				cout << "Bn: " << Bn << endl;
 				initial_AllTrail();
-				//¸ù¾İ¹Û²ìÈ·¶¨µÄËÑË÷Ë³Ğò
+				//æ ¹æ®è§‚å¯Ÿç¡®å®šçš„æœç´¢é¡ºåº
 				FindBnNa1 = false; FindBnNa2 = false; FindBnNa3 = false;
 				Round_NA1();
 				Round_NA2();
@@ -1177,7 +1177,7 @@ void matsui() {
 		if (i < RNUM) {
 			if (i <= Na12UBRnum) {
 				if (!FindBnNa1 && !FindBnNa2 && !FindBnNa3) {
-					//Èô¶¼Ã»ÖªµÀ£¬ÔòÀ©Õ¹µÄ¾ÍÊÇ×îÓÅµÄ
+					//è‹¥éƒ½æ²¡çŸ¥é“ï¼Œåˆ™æ‰©å±•çš„å°±æ˜¯æœ€ä¼˜çš„
 					if (NextBnInNA == 0) FindBnNa1 = true;
 					else if (NextBnInNA == 1) FindBnNa2 = true;
 					else  FindBnNa3 = true;
@@ -1187,15 +1187,15 @@ void matsui() {
 			Rnum++;
 			GenBnUP(0); 
 			//cout << "TotalNxtBn:" << Bn << endl;
-			//´æ´¢×îÓÅ¼£
+			//å­˜å‚¨æœ€ä¼˜è¿¹
 			if (GenBnDir) {
-				//ÕıÏòµÃµ½£¬Ö±½Ó´æ				
+				//æ­£å‘å¾—åˆ°ï¼Œç›´æ¥å­˜				
 				memcpy(GenBnBestTrail, BestTrail, Rnum * STATE_LEN);
 				memcpy(GenBnBestw, Best_w, Rnum * sizeof(int));
 				GenBnNPRnum = BNPRnum;
 			}
 			else {
-				//ÄæÏòµÃµ½ĞèÒªÒÆÎ»
+				//é€†å‘å¾—åˆ°éœ€è¦ç§»ä½
 				memcpy(&GenBnBestTrail[1], BestTrail, (Rnum - 1) * STATE_LEN);
 				memcpy(&GenBnBestw[1], Best_w, (Rnum - 1) * sizeof(int));
 				memcpy(&GenBnBestTrail[0], &BestTrail[Rnum - 1], STATE_LEN);
@@ -1208,7 +1208,7 @@ void matsui() {
 
 		if (i <= Na12UBRnum) {
 			int TmpBn = Bn;
-			//ĞèÇó½â×î½ôµÄÉÏ½ç
+			//éœ€æ±‚è§£æœ€ç´§çš„ä¸Šç•Œ
 			start = clock();
 			if (!FindBnNa1) {
 				if (i == 2) {
@@ -1238,13 +1238,13 @@ void matsui() {
 					Rnum++;
 					GenBnUP(1);
 					if (GenBnDir) {
-						//ÕıÏòµÃµ½£¬Ö±½Ó´æ				
+						//æ­£å‘å¾—åˆ°ï¼Œç›´æ¥å­˜				
 						memcpy(GenBnNa1BestTrail, BestTrail, Rnum * STATE_LEN);
 						memcpy(GenBnNa1Bestw, Best_w, Rnum * sizeof(int));
 						GenBnNa1NPRnum = BNPRnum;
 					}
 					else {
-						//ÄæÏòµÃµ½ĞèÒªÒÆÎ»
+						//é€†å‘å¾—åˆ°éœ€è¦ç§»ä½
 						memcpy(&GenBnNa1BestTrail[1], BestTrail, (Rnum - 1) * STATE_LEN);
 						memcpy(&GenBnNa1Bestw[1], Best_w, (Rnum - 1) * sizeof(int));
 						memcpy(GenBnNa1BestTrail[0], BestTrail[Rnum - 1], STATE_LEN);
@@ -1266,13 +1266,13 @@ void matsui() {
 				Rnum++;
 				GenBnUP(1);
 				if (GenBnDir) {
-					//ÕıÏòµÃµ½£¬Ö±½Ó´æ				
+					//æ­£å‘å¾—åˆ°ï¼Œç›´æ¥å­˜				
 					memcpy(GenBnNa1BestTrail, BestTrail, Rnum * STATE_LEN);
 					memcpy(GenBnNa1Bestw, Best_w, Rnum * sizeof(int));
 					GenBnNa1NPRnum = BNPRnum;
 				}
 				else {
-					//ÄæÏòµÃµ½ĞèÒªÒÆÎ»
+					//é€†å‘å¾—åˆ°éœ€è¦ç§»ä½
 					memcpy(&GenBnNa1BestTrail[1], BestTrail, (Rnum - 1) * STATE_LEN);
 					memcpy(&GenBnNa1Bestw[1], Best_w, (Rnum - 1) * sizeof(int));
 					memcpy(&GenBnNa1BestTrail[0], &BestTrail[Rnum - 1], STATE_LEN);
@@ -1313,13 +1313,13 @@ void matsui() {
 					Rnum++;
 					GenBnUP(2);
 					if (GenBnDir) {
-						//ÕıÏòµÃµ½£¬Ö±½Ó´æ				
+						//æ­£å‘å¾—åˆ°ï¼Œç›´æ¥å­˜				
 						memcpy(GenBnNa2BestTrail, BestTrail, Rnum * STATE_LEN);
 						memcpy(GenBnNa2Bestw, Best_w, Rnum * sizeof(int));
 						GenBnNa2NPRnum = BNPRnum;
 					}
 					else {
-						//ÄæÏòµÃµ½ĞèÒªÒÆÎ»
+						//é€†å‘å¾—åˆ°éœ€è¦ç§»ä½
 						memcpy(&GenBnNa2BestTrail[1], BestTrail, (Rnum - 1) * STATE_LEN);
 						memcpy(&GenBnNa2Bestw[1], Best_w, (Rnum - 1) * sizeof(int));
 						memcpy(&GenBnNa2BestTrail[0], &BestTrail[Rnum - 1], STATE_LEN);
@@ -1341,13 +1341,13 @@ void matsui() {
 				Rnum++;
 				GenBnUP(2);
 				if (GenBnDir) {
-					//ÕıÏòµÃµ½£¬Ö±½Ó´æ				
+					//æ­£å‘å¾—åˆ°ï¼Œç›´æ¥å­˜				
 					memcpy(GenBnNa2BestTrail, BestTrail, Rnum * STATE_LEN);
 					memcpy(GenBnNa2Bestw, Best_w, Rnum * sizeof(int));
 					GenBnNa2NPRnum = BNPRnum;
 				}
 				else {
-					//ÄæÏòµÃµ½ĞèÒªÒÆÎ»
+					//é€†å‘å¾—åˆ°éœ€è¦ç§»ä½
 					memcpy(&GenBnNa2BestTrail[1], BestTrail, (Rnum - 1) * STATE_LEN);
 					memcpy(&GenBnNa2Bestw[1], Best_w, (Rnum - 1) * sizeof(int));
 					memcpy(&GenBnNa2BestTrail[0], &BestTrail[Rnum - 1], STATE_LEN);

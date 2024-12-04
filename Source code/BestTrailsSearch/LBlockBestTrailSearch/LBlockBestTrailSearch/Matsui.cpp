@@ -1,4 +1,4 @@
- #include<iostream>
+#include<iostream>
 #include<emmintrin.h>
 #include<nmmintrin.h>
 #include<ctime>
@@ -86,9 +86,9 @@ void logToFile(const string& fileNameR, const string& message) {
 
 void FileOutputTrail() {
 #if(TYPE)
-	string fileName = "result/LBlock_Linear_Trail.txt";
+	string fileName = "LBlock_Linear_Trail.txt";
 #else
-	string fileName = "result/LBlock_Diff_Trail.txt";
+	string fileName = "LBlock_Diff_Trail.txt";
 #endif
 #if(TYPE)
 	//Linear
@@ -1597,9 +1597,9 @@ void matsui() {
 	GenTables();
 	clock_t start, End;
 #if(TYPE)
-	string fileName = "result/LBlock_Linear.txt";
+	string fileName = "LBlock_Linear.txt";
 #else	
-	string fileName = "result/LBlock_Diff.txt";
+	string fileName = "LBlock_Diff.txt";
 #endif
 
 	stringstream message;

@@ -137,9 +137,9 @@ map<pair<u64, int>, ValueNoForCluster> ValueNoMapCluster;
 
 void FileOutputTrail() {
 #if(TYPE==0)
-	string fileName = "result/PRESENT_Diff_ClusterSearch_Trail.txt";
+	string fileName = "PRESENT_Diff_ClusterSearch_Trail.txt";
 #elif(TYPE==1)
-	string fileName = "result/PRESENT_Linear_ClusterSearch_Trail.txt";
+	string fileName = "PRESENT_Linear_ClusterSearch_Trail.txt";
 #endif
 
 	ALIGNED_TYPE_(__m128i, 16) SO[RNUM + 1];
@@ -379,9 +379,9 @@ void Round(__m128i TrailInput, __m128i TrailOutput) {
 void matsui() {
 	GenTables();
 #if(TYPE)
-	string fileName = "result/PRESENT_Linear_ClusterSearch.txt";
+	string fileName = "PRESENT_Linear_ClusterSearch.txt";
 #else
-	string fileName = "result/PRESENT_Diff_ClusterSearch.txt";	
+	string fileName = "PRESENT_Diff_ClusterSearch.txt";	
 #endif
 	RecordWeightTrailNUM.clear();
 	__m128i TrailIn = _mm_setzero_si128();

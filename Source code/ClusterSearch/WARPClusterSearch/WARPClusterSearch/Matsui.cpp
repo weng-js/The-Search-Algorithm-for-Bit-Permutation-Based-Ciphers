@@ -151,9 +151,9 @@ map<pair<pair<u64, u64>, int>, ValueForCluster> ValueMapCluster;
 
 void FileOutputTrail() {
 #if(TYPE)	
-	string fileName = "result/WARP_Linear_ClusterSearch_Trail.txt";
+	string fileName = "WARP_Linear_ClusterSearch_Trail.txt";
 #else
-	string fileName = "result/WARP_Diff_ClusterSearch_Trail.txt";
+	string fileName = "WARP_Diff_ClusterSearch_Trail.txt";
 #endif
 
 	
@@ -625,7 +625,7 @@ void FWRound_i(STATE s, __m128i sbx_out) {
 							u64 tmp_value2 = (Trail[nxt_s.rnum + 1].m128i_u64[1] << 4) ^ Trail[nxt_s.rnum + 1].m128i_u64[0];
 							if (nxt_s.rnum <= (Rnum - EndRoundForNo)) {
 								auto itorNo = ValueNoMapCluster.find(make_pair(make_pair(tmp_value1, tmp_value2), nxtnxt_s.rnum));
-								if (itorNo != ValueNoMapCluster.end() && (Bn - nxtnxt_s.W <= itorNo->second.WeightUBorLB)) goto FWSearchForActiveOutput; //²»´æÔÚ
+								if (itorNo != ValueNoMapCluster.end() && (Bn - nxtnxt_s.W <= itorNo->second.WeightUBorLB)) goto FWSearchForActiveOutput; //Â²Â»Â´Ã¦Ã”Ãš
 							}				
 
 							auto itorYes = ValueMapCluster.find(make_pair(make_pair(tmp_value1, tmp_value2), nxtnxt_s.rnum));
@@ -1136,10 +1136,10 @@ void matsui() {
 	__m128i tmp3 = _mm_setzero_si128();
 	__m128i TrailInput = _mm_setzero_si128(); __m128i TrailOutput = _mm_setzero_si128();
 #if(TYPE)
-	string fileName = "result/WARP_Linear_ClusterSearch.txt";
+	string fileName = "WARP_Linear_ClusterSearch.txt";
 	for (int i = 0; i <= RNUM; i++) BestB[i] *= 2;
 #else	
-	string fileName = "result/WARP_Diff_ClusterSearch.txt";
+	string fileName = "WARP_Diff_ClusterSearch.txt";
 #endif
 
 	// input info:

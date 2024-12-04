@@ -86,9 +86,9 @@ void logToFile(const string& fileNameR, const string& message) {
 
 void FileOutputTrail() {
 #if(TYPE==0)
-	string fileName = "result/PRESENT_Diff_Trail.txt";
+	string fileName = "PRESENT_Diff_Trail.txt";
 #elif(TYPE==1)
-	string fileName = "result/PRESENT_Linear_Trail.txt";
+	string fileName = "PRESENT_Linear_Trail.txt";
 #endif
 
 	ALIGNED_TYPE_(__m128i, 16) SO[RNUM];       
@@ -1122,9 +1122,9 @@ void GenBnUP(int NaTag) {
 void matsui() {
 	GenTables();
 #if(TYPE)
-	string fileName = "result/PRESENT_Linear.txt";
+	string fileName = "PRESENT_Linear.txt";
 #else	
-	string fileName = "result/PRESENT_Diff.txt";
+	string fileName = "PRESENT_Diff.txt";
 #endif
 
 	stringstream message;

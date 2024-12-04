@@ -177,9 +177,9 @@ map<pair<pair<pair<pair<u8, u8>, pair<u8, u8>>, pair<pair<u8, u8>, pair<u8, u8>>
 
 void FileOutputTrail() {
 #if(TYPE==0)
-	string fileName = "result/KNOT" + to_string(Block_SIZE) + "_Diff_ClusterSearch_Trail.txt";
+	string fileName = "KNOT" + to_string(Block_SIZE) + "_Diff_ClusterSearch_Trail.txt";
 #elif(TYPE==1)
-	string fileName = "result/KNOT" + to_string(Block_SIZE) + "_Linear_ClusterSearch_Trail.txt";
+	string fileName = "KNOT" + to_string(Block_SIZE) + "_Linear_ClusterSearch_Trail.txt";
 #endif
 
 	ALIGNED_TYPE_(__m128i, 16) SO[RNUM][State_NUM];        //256bit 2*__m128i  384 3*__m128i 512 4*__m128i
@@ -371,7 +371,7 @@ void FWRound_i(STATE s, __m128i sbx_out[]) {
 												//!it1->second.Trail_NUM && !MinusTag
 												auto it2 = TmpRecordWeightTrailNUM.find(it1->first);
 												if (it2 != TmpRecordWeightTrailNUM.end() && it2->second.Trail_NUM) {
-													//¿ÉÒÔ²åÈë
+													//Â¿Ã‰Ã’Ã”Â²Ã¥ÃˆÃ«
 													itorYes->second.InsertOrUpdate(it1->first - s_nr.W, 1);
 													MinusTag = true;
 												}
@@ -544,10 +544,10 @@ void Round(__m128i TrailI[], __m128i TrailO[]) {
 void matsui() {
 	GenTables();
 #if(TYPE)
-	string fileName = "result/KNOT" + to_string(Block_SIZE) + "_Linear_ClusterSearch.txt";
+	string fileName = "KNOT" + to_string(Block_SIZE) + "_Linear_ClusterSearch.txt";
 	for (int i = 0; i <= RNUM; i++) BestB[i] *= 2;
 #else	
-	string fileName = "result/KNOT" + to_string(Block_SIZE) + "_Diff_ClusterSearch.txt";
+	string fileName = "KNOT" + to_string(Block_SIZE) + "_Diff_ClusterSearch.txt";
 #endif
 	RecordWeightTrailNUM.clear();
 	ALIGNED_TYPE_(__m128i, 16) TrailI[State_NUM];

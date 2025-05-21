@@ -1,0 +1,39 @@
+Rnum:14,  Bn:62, UBofWeight:87, Margin : 25, RASNUB_ER : 4, use the merging weights strategy: 1
+Input:
+0x0700000000000700
+Output:
+0x0000000000005005
+
+Weight: 58, NUM: 1
+Weight: 59, NUM: 1
+Weight: 60, NUM: 0
+Weight: 61, NUM: 0
+Weight: 62, NUM: 1
+Weight: 63, NUM: 0
+Weight: 64, NUM: 0
+Weight: 65, NUM: 0
+Weight: 66, NUM: 1
+Weight: 67, NUM: 1
+Weight: 68, NUM: 1
+Weight: 69, NUM: 0
+Weight: 70, NUM: 0
+Weight: 71, NUM: 1
+Weight: 72, NUM: 0
+Weight: 73, NUM: 0
+Weight: 74, NUM: 1
+Weight: 75, NUM: 1
+Weight: 76, NUM: 0
+Weight: 77, NUM: 0
+Weight: 78, NUM: 0
+Weight: 79, NUM: 1
+Weight: 80, NUM: 0
+Weight: 81, NUM: 1
+Weight: 82, NUM: 0
+Weight: 83, NUM: 0
+Weight: 84, NUM: 1
+Weight: 85, NUM: 0
+Weight: 86, NUM: 0
+Weight: 87, NUM: 0
+Trail_NUM: 12, ClusterWeight: 57.3497
+Total Time: 36.189s, 0.60315min
+
